@@ -10,9 +10,32 @@
     [neminfo.nis.core :as nis]))
 ;
 
+(defn user-wallets [uid])
+
+
+(defn mosaic-fmt [data]
+  (s/join "\n"
+    (for [d data :let [m (:mosaicId d) q (:quantity d)]]
+      (str "<code>" (:namespaceId m) ":" (:name m) " </code> " q))))
+;
 
 (defn balance [ctx addr]
-  (send-text (:apikey ctx) (:cid ctx) "balance..."))
+  (let [alist (if addr 
+                [addr] 
+                (user-wallets (:uid ctx)))]
+    (if alist 
+      (doseq [a alist :let [res (nis/account-mosaic a)]]
+        (prn "res:" res)
+        (if-let [data (:data res)]
+          (send-text (:apikey ctx) (:cid ctx) 
+            (str "<b>" a "</b>\n" (mosaic-fmt data))
+            "HTML")
+          ;;
+          (send-text (:apikey ctx) (:cid ctx) 
+            (str "<b>" a "</b>\n" "<code>Error:</code> " (:message res))
+            "HTML")))
+      ;;
+      (send-text (:apikey ctx) (:cid ctx) "No wallets to show."))))
 ;
 
 (defn nodes [ctx nodes]

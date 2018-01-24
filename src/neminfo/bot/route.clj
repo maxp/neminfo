@@ -8,7 +8,7 @@
 ;
 
 
-(def RE_COMMAND #"^(/[A-Za-z0-9]+)([ _](.+))?$")
+(def RE_COMMAND #"^(/[A-Za-z0-9]+)([ _]+(.+))?$")
 
 (defn split-command [text]
   (when-let [[_ cmd _ tail] (re-matches RE_COMMAND text)]
@@ -26,7 +26,7 @@
               :uid (-> msg :from :id)}]
     ;
     (condp = (s/lower-case cmd)
-      "/balance"  (h/balance ctx text)  ;; FIX!!!
+      "/balance"  (h/balance ctx param)
       "/nodes"    (h/nodes ctx (-> conf :nem :nodes))
       "/watch"    (h/help ctx)
       "/remove"   (h/help ctx)

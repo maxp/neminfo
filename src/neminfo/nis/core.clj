@@ -52,10 +52,9 @@
 ;
 
 (defn account-mosaic [addr]
-  (let [address (cleanup-addr addr)
-        rc (get-api (api-node) "/account/mosaic/owned" {:address address})]
-    (prn "rc:" rc)
-    rc))
+  (let [address (cleanup-addr addr)]
+    (prn "a:" address)
+    (get-api (api-node) "/account/mosaic/owned" {:address address})))
 ;
 
 ;;.
