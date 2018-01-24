@@ -8,7 +8,7 @@
 ;
 
 (def POLL_LIMIT 100)
-(def POLL_TIMEOUT 5000)
+(def POLL_TIMEOUT 5)  ;; seconds
 (def POLL_ERROR_SLEEP 3000)
 
 (defn update-loop [run-flag cnf msg-chan]
@@ -33,11 +33,14 @@
           (let [upd (api token :getUpdates
                       { :offset (inc last-id)
                         :limit poll-limit
-                        :timeout poll-timeout})]
-            (when-not upd
-              (warn "poller api-error")
-              (Thread/sleep poll-error-sleep))
-            (recur last-id upd)))
+                        :timeout poll-timeout})
+                {err :error} upd]
+            (if err
+              (do
+                (warn "api-error:" upd)
+                (Thread/sleep poll-error-sleep)
+                (recur last-id nil))
+              (recur last-id upd))))
         ;;
         (debug "poller loop end.")))))
 ;

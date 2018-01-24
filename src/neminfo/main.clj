@@ -8,7 +8,7 @@
     [mlib.log :refer [info warn]]
     ;
     [neminfo.build :refer [build]]
-    [neminfo.bot.dispatcher]))
+    [neminfo.bot.feeder]))
 ;
 
 (defn -main [& args]

@@ -55,7 +55,7 @@
             :else
             (do
               (warn "tg-api:" method body)
-              (assoc (parse-string body true)) :error E_TGAPI)))
+              (assoc (parse-string body true) :error E_TGAPI))))
           ;
         (catch Exception e
           (do

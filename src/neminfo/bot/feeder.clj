@@ -1,4 +1,4 @@
-(ns neminfo.bot.dispatcher
+(ns neminfo.bot.feeder
   (:require
     [clojure.core.async :refer [chan <!! close! thread]]
     [mount.core :refer [defstate]]
@@ -6,11 +6,16 @@
     [mlib.log :refer [debug info warn]]    
     [mlib.tg.core :refer [send-text]]
     [mlib.tg.poller :as poller]
-    [neminfo.bot.handlers :as h]))
+    [neminfo.bot.route :as r]))
 ;
 
 
-(def inbound-channel (chan))
+(defstate inbound-channel
+  :start 
+    (chan)
+  :stop
+    (close! inbound-channel))
+;
 
 (defstate poller-thread
   :start 
@@ -20,14 +25,13 @@
       (poller/stop poller-thread)))
 ;
 
-
 (defn process-inbound [ch]
   (when-let [upd (<!! ch)]
     (try
       (condp #(%1 %2) upd
-        :message        :>> h/message
-        :edited_message :>> h/message
-        :callback_query :>> h/callback
+        :message        :>> r/message
+        :edited_message :>> r/message
+        :callback_query :>> r/callback
         ;:inline_query   :>> h/inline
         ;:chosen_inline_result nil
         (debug "process-inbound: unexpected update -" upd))

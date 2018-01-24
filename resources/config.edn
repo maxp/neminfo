@@ -10,25 +10,20 @@
     :name "??botname??"
     :apikey "??12312:xxxxyyyyyy??"
     :poll-limit 100
-    :poll-timeout 5000
+    :poll-timeout 5   ;; seconds
     :poll-error-sleep 3000}
   ;    
   
-  :fb 
+  :nem 
   {
-    :listener 
-    {
-      :host "127.0.0.1"
-      :port  8048
-      :join? false}
-    
-    :api-timeout 30000
-
-    :app-id "....."
-    :app-secret "......"
-    :verify-token "......."
-    :page-token "......."}}
-
+    :nodes 
+    [ "http://go.nem.ninja:7890" 
+      "http://san.nem.ninja:7890"
+      "http://hachi.nem.ninja:7890"
+      "http://mdb:7890"
+      "http://node.mxlab.com:7890"]
+    :timeout 8000}}
+  ;
 
 ;.
   
