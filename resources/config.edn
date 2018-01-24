@@ -1,0 +1,35 @@
+{
+  :tz "Asia/Irkutsk"
+  
+  :mongodb
+  {
+    :url "mongodb://localhost:27017/bot"}
+
+  :tg 
+  {
+    :name "??botname??"
+    :apikey "??12312:xxxxyyyyyy??"
+    :poll-limit 100
+    :poll-timeout 5000
+    :poll-error-sleep 3000}
+  ;    
+  
+  :fb 
+  {
+    :listener 
+    {
+      :host "127.0.0.1"
+      :port  8048
+      :join? false}
+    
+    :api-timeout 30000
+
+    :app-id "....."
+    :app-secret "......"
+    :verify-token "......."
+    :page-token "......."}}
+
+
+;.
+  
+  

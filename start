@@ -1,0 +1,12 @@
+#!/bin/bash
+
+PRJ="neminfo"
+CWD=$(dirname "${BASH_SOURCE[0]}")
+
+java -jar $PRJ.jar prod.edn >> ../logs/${PRJ{-out.log 2>&1 &
+
+PID=$!
+echo $PID > $CWD/.pid
+wait $PID
+
+#.

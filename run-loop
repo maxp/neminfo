@@ -1,0 +1,11 @@
+#!/bin/bash
+
+cd /www/neminfo
+
+while : ; 
+do
+  ./start
+  sleep 3
+done
+
+#.
