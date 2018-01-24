@@ -39,9 +39,9 @@
 (defn thread-loop [loop-fn initial-state]
   (thread 
     (loop [state initial-state]
-      (if-let [new-state (loop-fn state)]
-        (recur new-state)
-        (info "thread-loop: end.")))))
+      (when-let [new-state (loop-fn state)]
+        (recur new-state)))
+    (info "thread-loop: end.")))
 ;
 
 (defstate inbound-thread
