@@ -25,11 +25,11 @@
               :cid (-> msg :chat :id)
               :uid (-> msg :from :id)}]
     ;
-    (condp = (s/lower-case cmd)
+    (condp = (s/lower-case (str cmd))
       "/balance"  (h/balance ctx param)
-      "/nodes"    (h/nodes ctx (-> conf :nem :nodes))
       "/watch"    (h/help ctx)
       "/remove"   (h/help ctx)
+      "/nodes"    (h/nodes ctx (-> conf :nem :nodes))
       "/help"     (h/help ctx)
       nil)))
 ;

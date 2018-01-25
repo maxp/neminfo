@@ -25,7 +25,6 @@
                 (user-wallets (:uid ctx)))]
     (if alist 
       (doseq [a alist :let [res (nis/account-mosaic a)]]
-        (prn "res:" res)
         (if-let [data (:data res)]
           (send-text (:apikey ctx) (:cid ctx) 
             (str "<b>" a "</b>\n" (mosaic-fmt data))
@@ -53,14 +52,16 @@
 
 (def HELP_TEXT
   (str
-    "<b>NEM Info bot</b>\n" "version: " (:version build) "
+    "<b>NEM Info bot</b>: v" (:version build) "
 
 command list:
 /balance [ADDRESS] - show your wallet info
-/watch ADDRESS - add address to watch list
+<code>/watch</code> ADDRESS - add address to watch list
 <code>/remove</code>
-<code>/nodes</code>
-<code>/help</code>
+/nodes - status of NIS nodes, listed in config
+/help - short instruction
+
+https://github.com/maxp/neminfo
   "))
 
 (defn help [ctx]

@@ -81,14 +81,14 @@
 ;   (comp
 ;     (watch)
 ;     (garden :pretty-print true)
-;     (target :dir #{"tmp/res/"})))
+;     (target :dir #{"tmp/resources/"})))
 ; ;
 
 ;;; ;;; ;;; ;;;
 
 (defn start []
   (require main-class)
-  (-> "tmp/conf.edn"
+  (-> "tmp/dev.edn"
     (slurp)
     (edn/read-string)
     (mount/start-with-args)))

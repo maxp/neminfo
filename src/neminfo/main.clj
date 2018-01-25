@@ -14,7 +14,7 @@
 (defn -main [& args]
   (if-let [rc (edn-read (first args))]
     (do
-      (info (:name build) (:version build) (:timestamp build))
+      (info "version:" (:version build) (:timestamp build))
       (start-with-args rc))
     (warn "config profile must be in parameters!")))
   ;

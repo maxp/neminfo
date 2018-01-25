@@ -51,9 +51,15 @@
   (get-api url "/chain/height" nil))
 ;
 
+(defn api [url path params]
+  (when-let [res (get-api url path params)]
+    (if (:error res)
+      (warn "api:" res)
+      res)))
+;
+
 (defn account-mosaic [addr]
   (let [address (cleanup-addr addr)]
-    (prn "a:" address)
     (get-api (api-node) "/account/mosaic/owned" {:address address})))
 ;
 

@@ -3,7 +3,7 @@
 PRJ="neminfo"
 CWD=$(dirname "${BASH_SOURCE[0]}")
 
-java -jar $PRJ.jar prod.edn >> ../logs/${PRJ{-out.log 2>&1 &
+java -jar $PRJ.jar prod.edn >> ../logs/${PRJ}.log 2>&1 &
 
 PID=$!
 echo $PID > $CWD/.pid

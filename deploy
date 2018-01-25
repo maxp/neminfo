@@ -8,7 +8,7 @@ PROD_ROOT=$PROD_HOST:$PROD_PATH
 UBERJAR="tmp/target/$PRJ.jar"
 
 ssh $PROD_HOST mkdir -p $PROD_PATH/var
-scp var/* $PROD_ROOT/var/
+# scp var/* $PROD_ROOT/var/
 scp run-loop start stop tmp/prod.edn $PROD_ROOT/
 
 chmod u+w $UBERJAR
