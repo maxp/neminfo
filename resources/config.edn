@@ -19,9 +19,7 @@
     :nodes 
     [ "http://go.nem.ninja:7890" 
       "http://san.nem.ninja:7890"
-      "http://hachi.nem.ninja:7890"
-      "http://mdb:7890"
-      "http://node.mxlab.com:7890"]
+      "http://hachi.nem.ninja:7890"]
     :timeout 8000}}
   ;
 

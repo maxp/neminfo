@@ -2,6 +2,9 @@
 
 That Telegram bot shows data for accounts of NEM.io blockchain network.
 
+https://t.me/neminfo_bot
+
+
 ### Commands
 
 - `/balance` - display watched wallet balance including mosaics

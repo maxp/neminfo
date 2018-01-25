@@ -1,2 +1,2 @@
 (ns neminfo.build)
-(def build {:name "neminfo", :version "0.1", :timestamp "2018-01-25T06:41:08.332Z", :commit "96937d280eeca81f23b031b0ef2683676adc6c1a"})
+(def build {:name "neminfo", :version "0.1", :timestamp "2018-01-25T07:07:19.088Z", :commit "92929428579a1b6e2ce1f8f45f8cd49b1c879ef2"})
